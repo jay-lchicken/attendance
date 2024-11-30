@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-function logout(){
+export function logout(){
     signOut(auth).then(() => {
         // Sign-out successful.
     }).catch((error) => {
