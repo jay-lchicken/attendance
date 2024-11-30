@@ -1,5 +1,5 @@
 "use client";
-import {auth} from "./firebase-auth"
+import {auth} from "./firebase-auth.js"
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import "firebase/compat/auth";
 
