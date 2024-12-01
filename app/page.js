@@ -1,9 +1,25 @@
 "use client";
 import {auth} from "./firebase-auth.js"
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged} from "firebase/auth";
 import "firebase/compat/auth";
 
 export default function Home() {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in
+
+            window.location.href = "./dashboard"
+
+        } else {
+            // No user is signed in
+
+
+
+
+
+
+        }
+    });
     function GoogleSignIn() {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
