@@ -36,12 +36,7 @@ export default function Page() {
                     >
                         View Events
                     </button>
-                    <button
-                        onClick={redirectToScan}
-                        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all"
-                    >
-                        Scan
-                    </button>
+
                     <button
                         onClick={logout}
                         className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all"

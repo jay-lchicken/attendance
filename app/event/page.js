@@ -60,7 +60,7 @@ export default function Event() {
                 <main>
                     <div
                         className="flex flex-col items-center gap-6 sm:gap-8 p-8 sm:p-16 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg w-11/12 max-w-md justify-cente">
-                        <QRCode value={JSON.stringify({ userId, eventId })} />
+                        <QRCode value={`https://attendance.kidslearncode.org/scan?userId=${userId}&eventId=${eventId}`} />
                         <p className="text-gray-400 mt-2">Scan this QR code to check in your attendance</p>
                     </div>
                 </main>
