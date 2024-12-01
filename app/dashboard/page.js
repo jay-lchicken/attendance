@@ -1,19 +1,23 @@
-"use client"; // Required for React's Client Components in Next.js 13+
+"use client";
 import "firebase/compat/auth";
 import { app, logout } from "./firebase";
 import { useRouter } from "next/navigation";
+import {useEffect} from "react";
 export default function Page() {
-    const router = useRouter();
+    useEffect(() => {
+        const router = useRouter();
 
-    function redirectToEventCreation() {
-        router.push("/eventcreation");
-    }
-    function redirectToEvents() {
-        router.push("/events");
-    }
-    function redirectToScan() {
-        router.push("/scan");
-    }
+        function redirectToEventCreation() {
+            router.push("/eventcreation");
+        }
+        function redirectToEvents() {
+            router.push("/events");
+        }
+        function redirectToScan() {
+            router.push("/scan");
+        }
+    }, []);
+
 
 
 
