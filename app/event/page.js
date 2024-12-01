@@ -78,13 +78,10 @@ export default function Event() {
                 <header className="text-center mt-6 w-full flex justify-center">
                     <h1 className="text-5xl font-bold">Event Attendance</h1>
                 </header>
-                <main>
-                    <div
-                        className="flex flex-col items-center gap-6 sm:gap-8 p-8 sm:p-16 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg w-11/12 max-w-md justify-cente">
-                        <QRCode
-                            value={`https://attendance.kidslearncode.org/scan?userId=${userId}&eventId=${eventId}`}/>
-                        <p className="text-gray-400 mt-2">Scan this QR code to check in your attendance</p>
-                    </div>
+                <main className="flex flex-col items-center gap-8 p-4 sm:p-16 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg w-1/4 max-w-md">
+                    <QRCode
+                        value={`https://attendance.kidslearncode.org/scan?userId=${userId}&eventId=${eventId}`}/>
+                    <p className="text-gray-400 mt-2">Scan to mark your attendance</p>
                 </main>
                 <section className="mt-8 w-11/12 max-w-lg">
                     <h2 className="text-3xl font-bold text-center mb-4">Attendance List</h2>

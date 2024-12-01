@@ -60,8 +60,8 @@ export async function handleScan(userId, eventId) {
             checkInTime: new Date().toISOString(),
         }).then(() => {
             alert("Attendance recorded successfully. ");
+            window.location.href = "https://web.kidslearncode.org"
         });
-        window.location.href = "./dashboard";
         console.log(`Successfully checked in user: ${userName}`);
     } catch (err) {
         alert("Please ensure you are logged in")

@@ -27,13 +27,16 @@ export default function Scan() {
                     <h2 className="text-white text-center">{data}</h2>
 
                     <button
-                        onClick={() => handleScan(userId, eventId)}
+                        onClick={() => {
+                            setData("Loading...");
+                            handleScan(userId, eventId);
+                        }}
                         disabled={data === "Please wait for the data to load"}
                         className={`${
                             data === "Please wait for the data to load" ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
                         } text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all mt-4`}
                     >
-                        Click to mark attendance
+                        {data === "Loading..." ? "Loading..." : "Click to mark attendance"}
                     </button>
                 </main>
             </div>
