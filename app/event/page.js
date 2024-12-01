@@ -21,6 +21,27 @@ export default function Event() {
         const userId = auth.currentUser.uid;
         const searchParams = useSearchParams();
         const eventId = searchParams.get("eventId");
+        const loadAttendance = async () => {
+            try {
+                if (!eventId) {
+                    console.error("No event ID provided");
+                    return;
+                }
+
+                setLoading(true);
+                const attendanceData = await fetchAttendance(eventId);
+
+                const sortedAttendance = attendanceData.sort(
+                    (a, b) => new Date(b.checkInTime) - new Date(a.checkInTime)
+                );
+
+                setAttendance(sortedAttendance);
+            } catch (error) {
+                console.error("Failed to load attendance data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
         useEffect(() => {
             const loadAttendance = async () => {
                 try {
@@ -60,7 +81,8 @@ export default function Event() {
                 <main>
                     <div
                         className="flex flex-col items-center gap-6 sm:gap-8 p-8 sm:p-16 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg w-11/12 max-w-md justify-cente">
-                        <QRCode value={`https://attendance.kidslearncode.org/scan?userId=${userId}&eventId=${eventId}`} />
+                        <QRCode
+                            value={`https://attendance.kidslearncode.org/scan?userId=${userId}&eventId=${eventId}`}/>
                         <p className="text-gray-400 mt-2">Scan this QR code to check in your attendance</p>
                     </div>
                 </main>
@@ -88,14 +110,21 @@ export default function Event() {
                         <p className="text-center text-gray-400">No attendance records found.</p>
                     )}
                 </section>
-                <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transform hover:scale-105 transition-all" style={{ margin: "10px" }}
-                        onClick={() => handleExportCSV(eventId)}>
+                <button
+                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transform hover:scale-105 transition-all"
+                    style={{margin: "10px"}}
+                    onClick={loadAttendance}>
+                    Refresh Data
+                </button>
+                <button
+                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transform hover:scale-105 transition-all"
+                    style={{margin: "10px"}}
+                    onClick={() => handleExportCSV(eventId)}>
                     Export Attendance as CSV
                 </button>
             </div>
         );
     }
-
 
 
 }

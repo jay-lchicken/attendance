@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
             <main className="flex flex-col items-center gap-8 p-8 sm:p-16 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg w-11/12 max-w-md">
-                <h1 className="text-5xl font-bold text-center">Welcome</h1>
+                <h1 className="text-5xl font-bold text-center">RollWise</h1>
                 <p className="text-gray-300 text-center">
                     Sign in to access your personalized dashboard and manage attendance with ease.
                 </p>

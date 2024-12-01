@@ -18,20 +18,7 @@ const auth = getAuth(app);
 
 
 let userName = "";
-function GoogleSignIn() {
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-        .then(async (result) => {
-            const user = result.user;
-            const email = user.email;
-            console.log("User signed in:", email);
-        })
-        .catch((error) => {
-            console.error("Error during sign-in:", error);
-        });
-}
 onAuthStateChanged(auth, (user) => {
     if (user) {
         userName = user.displayName || "Anonymous";
