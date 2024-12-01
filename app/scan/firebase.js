@@ -41,7 +41,7 @@ export async function handleScan(data) {
         try {
             const parsedData = JSON.parse(data);
             const { userId, eventId } = parsedData;
-
+            alert("Detected QR code data");
             if (!userId || !eventId) {
                 alert("Invalid QR code data");
                 throw new Error("Invalid QR code data");
