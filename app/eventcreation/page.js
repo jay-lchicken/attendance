@@ -1,14 +1,14 @@
 "use client"; // Required for React's Client Components in Next.js 13+
 
 import { useState } from "react";
-import { app, logout } from "./firebase";
+import { app, createEvent } from "./firebase";
 
 export default function EventCreation() {
     const [eventName, setEventName] = useState("");
 
     const handleCreateEvent = () => {
         // Handle event creation logic here
-        console.log("Event Created:", eventName);
+        createEvent(eventName)
     };
 
     return (

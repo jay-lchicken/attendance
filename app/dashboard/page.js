@@ -1,11 +1,18 @@
 "use client"; // Required for React's Client Components in Next.js 13+
 import "firebase/compat/auth";
 import { app, logout } from "./firebase";
-
+import { useRouter } from "next/navigation";
 export default function Page() {
+    const router = useRouter();
 
     function redirectToEventCreation() {
-        router.push("/eventcreation"); // Redirect to the "eventcreation" page
+        router.push("/eventcreation");
+    }
+    function redirectToEvents() {
+        router.push("/events");
+    }
+    function redirectToScan() {
+        router.push("/scan");
     }
 
 
@@ -27,12 +34,19 @@ export default function Page() {
                     Create Events
                 </button>
                 <button
+                    onClick={redirectToEvents}
                     className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all"
                 >
                     View Events
                 </button>
                 <button
-                    onClick={logout} // Add the click handler for logout
+                    onClick={redirectToScan}
+                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all"
+                >
+                    Scan
+                </button>
+                <button
+                    onClick={logout}
                     className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all"
                 >
                     Logout
