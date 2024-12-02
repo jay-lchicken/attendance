@@ -23,10 +23,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userName = user.displayName || "Anonymous";
     } else {
-        const auth = getAuth();
-        const provider = new GoogleAuthProvider();
-
-        signInWithPopup(auth, provider)
+        window.location.href = "./"
     }
 });
 export async function getEventDetails(userId, eventId) {
