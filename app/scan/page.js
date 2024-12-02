@@ -11,10 +11,12 @@ export default function Scan() {
         const eventId = searchParams.get("eventId");
         const router = useRouter();
         const [data, setData] = useState("Please wait for the data to load");
+        const [userName, setUser] = useState("Please wait for the data to load");
 
         useEffect(() => {
             getEventDetails(userId, eventId).then((details) => {
-                setData(details.name);
+                setData(details.data.name);
+                setUser(details.name);
             });
         }, [userId, eventId]);
 
@@ -25,7 +27,8 @@ export default function Scan() {
                     <h1 className="text-5xl font-bold text-center">Attendance</h1>
 
                     <h2 className="text-white text-center">{data}</h2>
-
+                    <h2>Please ensure this is your registered name: </h2>
+                    <h2 className="text-white text-center">{userName}</h2>
                     <button
                         onClick={() => {
                             setData("Loading...");

@@ -32,10 +32,10 @@ onAuthStateChanged(auth, (user) => {
 export async function getEventDetails(userId, eventId) {
     try {
         const eventsDocRef = doc(db, `users/${userId}/events/${eventId}`);
-        const docSnapshot = await getDoc(eventsDocRef);
-        return {
+        const docSnapshot = await getDoc(eventsDocRef);return {
             id: docSnapshot.id,
-            ...docSnapshot.data(),
+            data: docSnapshot.data(),
+            name: auth.currentUser.displayName,
         };
     } catch (error) {
         console.error("Error fetching user events: ", error);
