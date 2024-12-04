@@ -81,7 +81,7 @@ export default function Event() {
                 <main className="flex flex-col items-center gap-8 p-4 sm:p-16 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg w-3/8 max-w-md m-2">
 
                     <QRCode
-                        value={`https://attendance.kidslearncode.org/scan?userId=${userId}&eventId=${eventId}`}
+                        value={`https://attendance-873y.vercel.app/scan?userId=${userId}&eventId=${eventId}`}
 
                     />
 
