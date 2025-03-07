@@ -1,8 +1,9 @@
 "use client";
 
 import {useRouter, useSearchParams} from "next/navigation";
-import {getEventDetails, handleScan} from "./firebase";
+import {getEventDetails, handleScan, auth} from "./firebase";
 import {useEffect, useState} from "react";
+import {GoogleAuthProvider, onAuthStateChanged, signInWithPopup} from "firebase/auth";
 
 export default function Scan() {
     if (typeof window !== 'undefined') {
@@ -19,7 +20,24 @@ export default function Scan() {
                 setUser(details.name);
             });
         }, [userId, eventId]);
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        setUser(user.displayName || "Anonymous");
+    } else {
+        const provider = new GoogleAuthProvider();
 
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
+                const user = result.user;
+                const email = user.email;
+                window.location.reload();
+                console.log("User signed in:", email);
+            })
+            .catch((error) => {
+                console.error("Error during sign-in:", error);
+            });
+    }
+});
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
                 <main

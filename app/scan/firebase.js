@@ -14,29 +14,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 
-let userName = "";
 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        userName = user.displayName || "Anonymous";
-    } else {
-        const provider = new GoogleAuthProvider();
 
-        signInWithPopup(auth, provider)
-            .then(async (result) => {
-                const user = result.user;
-                const email = user.email;
-                window.location.reload();
-                console.log("User signed in:", email);
-            })
-            .catch((error) => {
-                console.error("Error during sign-in:", error);
-            });
-    }
-});
 export async function getEventDetails(userId, eventId) {
     try {
         const eventsDocRef = doc(db, `users/${userId}/events/${eventId}`);
