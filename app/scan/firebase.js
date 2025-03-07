@@ -23,7 +23,18 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         userName = user.displayName || "Anonymous";
     } else {
-        window.location.href = "./"
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
+                const user = result.user;
+                const email = user.email;
+                window.location.reload();
+                console.log("User signed in:", email);
+            })
+            .catch((error) => {
+                console.error("Error during sign-in:", error);
+            });
     }
 });
 export async function getEventDetails(userId, eventId) {
@@ -59,6 +70,8 @@ export async function handleScan(userId, eventId) {
             alert("Attendance recorded successfully. ");
         });
         console.log(`Successfully checked in user: ${userName}`);
+        window.location.href = "./";
+
     } catch (err) {
         alert("Please ensure you are logged in")
         window.location.href = "./";
