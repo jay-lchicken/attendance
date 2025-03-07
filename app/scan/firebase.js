@@ -17,7 +17,27 @@ const db = getFirestore(app);
 export const auth = getAuth(app);
 
 
-
+var username ="";
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        username = user.displayName || "Anonymous"
+    } else {
+        const urlParams = new URLSearchParams(window.location.search);
+        window.location.href = `./?userId=${urlParams.get("userId")}&eventId=${urlParams.get("eventId")}`;
+        // const provider = new GoogleAuthProvider();
+        //
+        // signInWithPopup(auth, provider)
+        //     .then(async (result) => {
+        //         const user = result.user;
+        //         const email = user.email;
+        //         window.location.reload();
+        //         console.log("User signed in:", email);
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error during sign-in:", error);
+        //     });
+    }
+});
 
 export async function getEventDetails(userId, eventId) {
     try {

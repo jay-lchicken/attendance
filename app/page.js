@@ -7,8 +7,14 @@ export default function Home() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             // User is signed in
+            const urlParams = new URLSearchParams(window.location.search);
 
-            window.location.href = "./dashboard"
+            if (urlParams.get("userId") && urlParams.get("eventId")) {
+                window.location.href = `./scan?userId=${urlParams.get("userId")}&eventId=${urlParams.get("eventId")}`;
+            }else {
+                window.location.href = "./dashboard"
+
+            }
 
         } else {
             // No user is signed in
