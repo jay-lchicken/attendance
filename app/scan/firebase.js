@@ -38,6 +38,9 @@ onAuthStateChanged(auth, (user) => {
         //     });
     }
 });
+const urlParams = new URLSearchParams(window.location.search);
+const userId=urlParams.get("userId")
+const userId=urlParams.get("eventId")
 
 export async function getEventDetails(userId, eventId) {
     try {
