@@ -38,9 +38,7 @@ onAuthStateChanged(auth, (user) => {
         //     });
     }
 });
-const urlParams = new URLSearchParams(window.location.search);
-const userId=urlParams.get("userId")
-const userId=urlParams.get("eventId")
+
 
 export async function getEventDetails(userId, eventId) {
     try {
@@ -69,17 +67,15 @@ export async function handleScan(userId, eventId) {
         );
 
         await setDoc(doc(attendanceRef, auth.currentUser.uid), {
-            userName,
+            userName: auth.currentUser.displayName,
             checkInTime: new Date().toISOString(),
         }).then(() => {
             alert("Attendance recorded successfully. ");
         });
-        console.log(`Successfully checked in user: ${userName}`);
         window.location.href = "./";
 
     } catch (err) {
         alert("Please ensure you are logged in")
-        window.location.href = "./";
         throw new Error("An error occured while recording your attendance");
     }
 }
