@@ -71,7 +71,7 @@ export async function handleScan(userId, eventId) {
             checkInTime: new Date().toISOString(),
         }).then(() => {
             alert("Attendance recorded successfully. ");
-            window.close();
+            window.location.href = "https://web.kidslearncode.org";
 
         });
 
