@@ -55,7 +55,7 @@ export async function getEventDetails(userId, eventId) {
 }
 export async function handleScan(userId, eventId) {
     try {
-        alert("Please wait while we record your attendance");
+        alert("Please wait while we record your attendance. You may dismiss this and wait for the next alert.");
         if (!userId || !eventId) {
             alert("Invalid data");
             throw new Error("Invalid data");
@@ -71,8 +71,9 @@ export async function handleScan(userId, eventId) {
             checkInTime: new Date().toISOString(),
         }).then(() => {
             alert("Attendance recorded successfully. ");
+            window.close();
+
         });
-        window.location.href = "./";
 
     } catch (err) {
         alert("Please ensure you are logged in")
